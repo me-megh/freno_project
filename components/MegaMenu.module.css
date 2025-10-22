@@ -1,0 +1,84 @@
+/* General Mega Menu Styles */
+.megaMenuWrapper {
+    width: 100%;
+    background-color: #343a40;
+    padding: 10px 20px;
+    position: relative;
+  }
+  
+  .megaMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 0;
+    flex-wrap: wrap;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .menuItem {
+    flex: 1;
+    min-width: 200px;
+    margin-right: 40px;
+  }
+  
+  .menuItem h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+  }
+  
+  .menuItem ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menuItem li {
+    padding: 8px 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menuItem li:hover {
+    background-color: #007bff;
+    cursor: pointer;
+  }
+  
+  .menuItem li a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .megaMenu {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .menuItem {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  
+    .menuItem h3 {
+      font-size: 16px;
+    }
+  
+    .menuItem ul {
+      padding-left: 0;
+    }
+  
+    .menuItem li {
+      padding: 10px;
+      font-size: 14px;
+    }
+  }
+  
+  /* Hover Effects and Color Adjustments */
+  .megaMenu .menuItem li:hover {
+    background-color: #0056b3;
+  }
+  

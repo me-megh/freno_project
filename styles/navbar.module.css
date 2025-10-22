@@ -1,0 +1,125 @@
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #333;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    position: relative;
+  }
+  
+  .navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navLinks {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navItem {
+    position: relative;
+    margin-right: 20px;
+  }
+  
+  .navLink {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+  }
+  
+  .navLink:hover {
+    background-color: #007bff;
+  }
+  
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    min-width: 160px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+  }
+  
+  .navItem:hover .dropdown {
+    display: block;
+  }
+  
+  .dropdownLink {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    display: block;
+    transition: background-color 0.3s;
+  }
+  
+  .dropdownLink:hover {
+    background-color: #007bff;
+  }
+  
+  /* Auth Buttons */
+  .authButtons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .authButtons a {
+    margin-left: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 30px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .authButtons .signupBtn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .authButtons .loginBtn {
+    background-color: #ffc107;
+    color: white;
+  }
+  
+  .authButtons .signupBtn:hover,
+  .authButtons .loginBtn:hover {
+    opacity: 0.8;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navLinks {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navItem {
+      margin-right: 0;
+      width: 100%;
+    }
+  
+    .navItem a {
+      padding: 10px;
+      width: 100%;
+    }
+  
+    .navLinks.active {
+      display: flex;
+    }
+  }
+  

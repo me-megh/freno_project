@@ -1,0 +1,107 @@
+/* Mega Menu Wrapper */
+.megaMenuWrapper {
+    width: 100%;
+    background-color: #343a40;
+    padding: 0 20px;
+    position: relative;
+    z-index: 100;
+  }
+  
+  /* Mega Menu Container */
+  .megaMenu {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px 0;
+    flex-wrap: wrap;
+    color: #fff;
+    font-size: 16px;
+  }
+  
+  .menuItem {
+    position: relative;
+    margin-right: 30px;
+    padding: 10px 0;
+  }
+  
+  .menuTitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 5px;
+  }
+  
+  .menuItem:hover .menuTitle {
+    border-color: #007bff;
+  }
+  
+  /* Dropdown - Hidden by default */
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #343a40;
+    padding: 15px;
+    z-index: 99;
+    width: 250px;
+    border-radius: 5px;
+  }
+  
+  /* Show Dropdown on Hover */
+  .menuItem:hover .dropdown {
+    display: block;
+  }
+  
+  .dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menuLink {
+    padding: 10px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menuLink:hover {
+    background-color: #007bff;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .megaMenu {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .menuItem {
+      margin-bottom: 20px;
+    }
+  
+    .menuItem ul {
+      padding-left: 0;
+    }
+  
+    .menuLink {
+      padding: 10px;
+      font-size: 14px;
+    }
+  
+    /* Adjust Dropdown for Mobile */
+    .dropdown {
+      position: static;
+      display: block;
+      padding: 10px 0;
+      width: 100%;
+      border-radius: 0;
+    }
+  
+    .menuItem:hover .dropdown {
+      display: block;
+    }
+  }
+  
