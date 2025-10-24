@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify'; // Import toast
+import { useRouter } from 'next/router';
 import styles from '../styles/SignupForm.module.css';
 
 const SignupForm = () => {
@@ -8,6 +9,8 @@ const SignupForm = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState(''); // Add state for username
   const [error, setError] = useState('');
+
+  const router = useRouter(); // Initialize router
 //   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
 
@@ -31,6 +34,9 @@ const SignupForm = () => {
         position: 'top-right', 
         autoClose: 1000,  // Duration for the toast to appear
       });
+      setTimeout(() => {
+        router.push('/login'); // Redirect to the login page
+      }, 3000); 
     } catch (error) {
       // Handle error message
       const errorMessage =
