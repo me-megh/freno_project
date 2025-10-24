@@ -23,7 +23,6 @@ const SignupForm = () => {
     try {
       // Send email, password, and username to the API
       const response = await axios.post(`${API_URL}/api/auth`, { email, password, username });
-      console.log(response,"--------response of login")
       console.log('Signup Success', response.data);
 alert("Signup Successful!")
       // Show success toast notification
