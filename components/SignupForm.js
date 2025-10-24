@@ -8,6 +8,7 @@ const SignupForm = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState(''); // Add state for username
   const [error, setError] = useState('');
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +22,8 @@ const SignupForm = () => {
 
     try {
       // Send email, password, and username to the API
-      const response = await axios.post('/api/auth', { email, password, username });
+      const response = await axios.post(`${API_URL}/api/auth`, { email, password, username });
+      console.log(response,"--------response of login")
       console.log('Signup Success', response.data);
 alert("Signup Successful!")
       // Show success toast notification

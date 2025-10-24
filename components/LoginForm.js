@@ -9,6 +9,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +21,8 @@ const LoginForm = () => {
     }
 
     try {
-      const response = await axios.post('/api/auth', { email, password });
+      const response = await axios.post(`${API_URL}/api/auth`, { email, password });
+console.log(response,"--------response of login")
       const { token, user } = response.data;
       console.log('Login Success', response.data);
            // If login is successful, you might want to save the token or user info (like JWT)
