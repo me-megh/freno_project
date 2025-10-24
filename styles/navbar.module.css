@@ -100,6 +100,65 @@
     opacity: 0.8;
   }
   
+  /* Dropdown Menu for User */
+  .userMenu {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .username {
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ecf0f1;
+  }
+  
+  .userMenu:hover .dropdownMenu {
+    display: block;
+  }
+  
+  .dropdownMenu {
+    display: none;
+    position: absolute;
+    background-color: #34495e;
+    top: 100%;
+    right: 0;
+    border-radius: 6px;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .dropdownMenu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .dropdownMenu li {
+    padding: 10px 15px;
+  }
+  
+  .dropdownMenu li:hover {
+    background-color: #1abc9c;
+  }
+  
+  /* Logout Button Styling */
+  .logoutBtn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .logoutBtn:hover {
+    background-color: #c0392b;
+  }
+  
   /* Responsive Design */
   @media (max-width: 768px) {
     .navLinks {

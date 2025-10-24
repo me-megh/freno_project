@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import connectDB from '../../lib/db';
 import User from '../../models/User';
+import jwt from 'jsonwebtoken'; // Import jwt to create token
 
 // Initialize MongoDB connection
 connectDB();
@@ -9,37 +10,81 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const { email, password, username } = req.body;
 
-    // Validate that email, password, and username are provided
-    if (!email || !password || !username) {
-      return res.status(400).json({ message: "Email, password, and username are required" });
-    }
+    // Signup logic
+    if (username) {
+      // Validate that email, password, and username are provided for signup
+      if (!email || !password || !username) {
+        return res.status(400).json({ message: "Email, password, and username are required" });
+      }
 
-    // Check if the user already exists based on the email
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
-    }
+      // Check if the user already exists based on the email
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return res.status(400).json({ message: "User already exists" });
+      }
 
-    try {
-      // Hash the password before saving
-      const hashedPassword = await bcrypt.hash(password, 10);
+      try {
+        // Hash the password before saving
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-      // Create a new user object
-      const newUser = new User({
-        email,
-        password: hashedPassword,
-        username,
-      });
+        // Create a new user object
+        const newUser = new User({
+          email,
+          password: hashedPassword,
+          username,
+        });
 
-      // Save the new user to the database
-      await newUser.save();
+        // Save the new user to the database
+        await newUser.save();
 
-      res.status(201).json({ message: "User Created" });
-    } catch (error) {
-      console.error("Error during signup:", error);
-      res.status(500).json({ message: "Internal Server Error" });
+        return res.status(201).json({ message: "User Created" });
+      } catch (error) {
+        console.error("Error during signup:", error);
+        return res.status(500).json({ message: "Internal Server Error" });
+      }
+    } else {
+      // Login logic
+      if (!email || !password) {
+        return res.status(400).json({ message: "Email and password are required" });
+      }
+
+      try {
+        // Check if the user exists based on the email
+        const user = await User.findOne({ email });
+        if (!user) {
+          return res.status(400).json({ message: "Invalid credentials" });
+        }
+
+        // Compare provided password with the stored hashed password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+          return res.status(400).json({ message: "Invalid credentials" });
+        }
+
+        // Create JWT token
+        const token = jwt.sign(
+          { id: user._id, email: user.email },
+          process.env.JWT_SECRET, // Make sure to have this in your .env file
+          { expiresIn: '1h' } // Token expiry of 1 hour
+        );
+
+        // Send back the token and user info (you can modify this response as needed)
+        return res.status(200).json({
+            message: "Login successful",
+            token,
+            user: {
+              id: user._id,
+              email: user.email,
+              username: user.username, // Add any other details you want to send
+            }
+          });
+
+      } catch (error) {
+        console.error("Error during login:", error);
+        return res.status(500).json({ message: "Internal Server Error" });
+      }
     }
   } else {
-    res.status(400).json({ message: "Bad Request" });
+    return res.status(400).json({ message: "Bad Request" });
   }
 }

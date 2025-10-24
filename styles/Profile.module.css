@@ -1,0 +1,81 @@
+/* Profile.module.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f5f7;  /* Soft background for the page */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .header {
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 20px;
+  }
+  
+  .header h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 0;
+  }
+  
+  .body {
+    padding: 20px 0;
+  }
+  
+  .info {
+    margin-bottom: 20px;
+  }
+  
+  .infoLabel {
+    display: block;
+    font-size: 14px;
+    color: #888888;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  
+  .infoValue {
+    font-size: 16px;
+    color: #333333;
+    font-weight: 500;
+    word-wrap: break-word;
+  }
+  
+  .logoutSection {
+    margin-top: 30px;
+  }
+  
+  .logoutBtn {
+    background-color: #007bff; /* Professional blue color */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+  }
+  
+  .logoutBtn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight elevation effect on hover */
+  }
+  
+  .logoutBtn:focus {
+    outline: none;
+  }
+  

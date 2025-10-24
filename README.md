@@ -34,3 +34,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+mongo atlas
+cluster name :freno
+username:meghap1006_db_user
+password:tUU2jwZ6DkCMizew
+serverdatabase url: https://cloud.mongodb.com/v2/68fafe3ab899de40d24a2157#/metrics/replicaSet/68fafef89433b70ec30eced0/explorer/freno-db/users/find

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from '../styles/LoginForm.module.css';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,11 +21,34 @@ const LoginForm = () => {
 
     try {
       const response = await axios.post('/api/auth', { email, password });
+      const { token, user } = response.data;
       console.log('Login Success', response.data);
+           // If login is successful, you might want to save the token or user info (like JWT)
+           localStorage.setItem('authToken', token);
+           localStorage.setItem('userDetails', JSON.stringify(user)); // Save token to localStorage
+
+           // Show success notification
+           toast.success('Login Successful! Redirecting...', {
+             position: 'top-right',
+             autoClose: 1000,
+     
+           });
+           // Redirect to homepage after a short delay
+      setTimeout(() => {
+        router.push('/profile'); // Redirect to the homepage (or desired route)
+      }, 1000); 
+     
     } catch (error) {
-      setError(
-        error.response ? error.response.data : 'Login failed. Please try again.'
-      );
+        // Handle error message from the backend or a general error
+      const errorMessage =
+      error.response && error.response.data && error.response.data.message
+        ? error.response.data.message
+        : 'Login failed. Please try again.';
+    setError(errorMessage); // Display error message in the form
+    toast.error(errorMessage, {
+      position: 'top-right',
+      autoClose: 3000,
+    });
     }
   };
 
