@@ -20,17 +20,16 @@ const SignupForm = () => {
       setError('Please fill in all fields');
       return;
     }
-    console.log(API_URL,"--------------------signup")
+   
     try {
       // Send email, password, and username to the API
       const response = await axios.post(`${API_URL}/api/auth`, { username ,email, password });
       
       console.log('Signup Success', response.data);
-alert("Signup Successful!")
       // Show success toast notification
       toast.success('Signup Successful! You can now log in.', {
         position: 'top-right', 
-        autoClose: 3000,  // Duration for the toast to appear
+        autoClose: 1000,  // Duration for the toast to appear
       });
     } catch (error) {
       // Handle error message
