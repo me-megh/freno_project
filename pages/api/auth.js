@@ -4,7 +4,9 @@ import User from '../../models/User';
 import jwt from 'jsonwebtoken'; // Import jwt to create token
 
 // Initialize MongoDB connection
-connectDB();
+if (mongoose.connection.readyState === 0) {
+    connectDB();
+  }  
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -12,6 +14,11 @@ export default async function handler(req, res) {
 
     // Signup logic
     if (username) {
+        if (!username) {
+            return res.status(400).json({ message: "Username is required" });
+          }
+           // Check if the user already exists based on the email
+     
       // Validate that email, password, and username are provided for signup
       if (!email || !password || !username) {
         return res.status(400).json({ message: "Email, password, and username are required" });
