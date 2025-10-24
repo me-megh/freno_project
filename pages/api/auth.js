@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import connectDB from '../../lib/db';
 import User from '../../models/User';
 import jwt from 'jsonwebtoken'; // Import jwt to create token
+import mongoose from 'mongoose';
 
 // Initialize MongoDB connection
 if (mongoose.connection.readyState === 0) {
