@@ -19,10 +19,9 @@ const LoginForm = () => {
       setError('Please fill in both fields');
       return;
     }
-
+    console.log(API_URL,"--------------------login")
     try {
       const response = await axios.post(`${API_URL}/api/auth`, { email, password });
-
       const { token, user } = response.data;
       console.log('Login Success', response.data);
            // If login is successful, you might want to save the token or user info (like JWT)
