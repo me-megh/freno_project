@@ -127,7 +127,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL|| 'http://localhost:3000';
               {companies.map((company) => (
                 <li key={company.companyId._id}>
                   <a
-                    href={`/company/${company.companyId._id}`} 
+                    href={`${API_URL}/company/${company.companyId._id}`} 
                     className={styles.dropdownLink}
                   >
                     {company.companyId.name}
