@@ -1,33 +1,64 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles/navbar.module.css";
 import { useRouter } from "next/router";
+import axios from "axios"; // For making API requests
+import styles from "../styles/navbar.module.css";
 
 const Navbar = () => {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState("");
-
+  const [companies, setCompanies] = useState([]);
+const API_URL = process.env.NEXT_PUBLIC_API_URL|| 'http://localhost:3000';
   useEffect(() => {
-    // Check if the user is logged in by checking localStorage for the token
     const token = localStorage.getItem("authToken");
     const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    const userId = userDetails ? userDetails.id : null;
+
+    if (!userId) {
+      console.error("User ID not found in localStorage!");
+      return; // Exit if no userId found
+    }
 
     if (token && userDetails) {
-      setIsAuthenticated(true); // User is logged in
-      setUsername(userDetails.username || "User"); // Set username from localStorage
+      setIsAuthenticated(true);
+      setUsername(userDetails.username || "User");
+
+      // Fetch accessible companies after user is authenticated
+      const fetchCompanies = async () => {
+        try {
+          // Use GET request to fetch companies
+          const response = await axios.get(`${API_URL}/api/user/companies`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            params: {
+              userId: userId, // Pass userId as query parameter
+            },
+          });
+
+          setCompanies(response.data.companies); // Store the companies in state
+          localStorage.setItem(
+            "userCompanies",
+            JSON.stringify(response.data.companies)
+          ); // Store in localStorage
+        } catch (error) {
+          console.error("Error fetching companies:", error);
+        }
+      };
+
+      fetchCompanies();
     } else {
-      setIsAuthenticated(false); // User is not logged in
+      setIsAuthenticated(false);
     }
   }, []);
 
   const handleLogout = () => {
-    // Clear the token from localStorage
     localStorage.removeItem("authToken");
     localStorage.removeItem("userDetails");
-    setIsAuthenticated(false); // Update the state
-    router.push("/"); // Redirect to login page
+    localStorage.removeItem("userCompanies"); // Clear companies from localStorage
+    setIsAuthenticated(false);
+    router.push("/login");
   };
-
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>Freno Business</div>
@@ -85,6 +116,28 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
+
+        {/* Companies Dropdown */}
+        <div className={styles.navItem}>
+          <a href="#" className={styles.navLink}>
+            Companies
+          </a>
+          <div className={styles.dropdown}>
+            <ul>
+              {companies.map((company) => (
+                <li key={company.companyId._id}>
+                  <a
+                    href={`/company/${company.companyId._id}`} 
+                    className={styles.dropdownLink}
+                  >
+                    {company.companyId.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
         <div className={styles.navItem}>
           <a href="#" className={styles.navLink}>
             Contact
@@ -99,10 +152,14 @@ const Navbar = () => {
             <div className={styles.dropdownMenu}>
               <ul>
                 <li>
-                  <a href="/profile" className={styles.dropdownLink}>Profile</a>
+                  <a href="/profile" className={styles.dropdownLink}>
+                    Profile
+                  </a>
                 </li>
                 <li>
-                  <button onClick={handleLogout} className={styles.logoutBtn}>Logout</button>
+                  <button onClick={handleLogout} className={styles.logoutBtn}>
+                    Logout
+                  </button>
                 </li>
               </ul>
             </div>

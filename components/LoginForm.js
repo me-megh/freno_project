@@ -9,7 +9,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL|| 'http://localhost:3000';
 
   const handleSubmit = async (e) => {
     e.preventDefault();

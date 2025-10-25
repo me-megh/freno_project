@@ -1,0 +1,114 @@
+/* styles/CompanyDetails.module.css */
+
+.companyDetails {
+    width: 80%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    font-family: 'Lato', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .logo {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .companyName {
+    font-size: 3rem;
+    color: #2c3e50;
+    margin: 10px 0;
+  }
+  
+  .createdAt {
+    font-size: 1rem;
+    color: #7f8c8d;
+  }
+  
+  .navMenu {
+    display: flex;
+    justify-content: center;
+    background-color: #3498db;
+    padding: 10px 0;
+    border-radius: 8px;
+    margin-bottom: 40px;
+  }
+  
+  .navMenu ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+  }
+  
+  .navMenu li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .navMenu li a:hover {
+    color: #f39c12;
+  }
+  
+  .body {
+    margin-bottom: 40px;
+  }
+  
+  .body h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .body p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 15px 0;
+  }
+  
+  .error {
+    text-align: center;
+    font-size: 1.2rem;
+    color: red;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #3498db;
+  }
+  
+  /* Responsive Design for smaller screens */
+  @media (max-width: 768px) {
+    .companyDetails {
+      width: 90%;
+    }
+  
+    .navMenu {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .navMenu ul {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .companyName {
+      font-size: 2rem;
+    }
+  
+    .logo {
+      width: 120px;
+    }
+  }
+  
